@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Tools Pro - FREE Merge, Split, Compress, Convert & More</title>
+    <meta name="description" content="FREE PDF Tools: Merge, Split, Compress, PDF to Word, JPG to PDF, Password Protect, Watermark, Rotate, Search, QR Code & More. No signup, instant download!">
+    <meta name="keywords" content="pdf merge, pdf compress, pdf to word, pdf splitter, image to pdf, pdf unlock, pdf watermark, pdf rotate, pdf search, qr code generator, free pdf tools">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#667eea">
+    <meta property="og:title" content="PDF Tools Pro - 20+ Free PDF Tools">
+    <meta property="og:description" content="Merge, Split, Compress, Convert, Search & More - No Watermark, Instant Download">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/667eea/ffffff?text=PDF+Tools+Pro">
+    <link rel="manifest" href="#" id="manifestLink">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-gradient: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+            --glass-bg: rgba(255,255,255,0.97);
+            --glass-dark: rgba(18,18,35,0.97);
+            --card-border: rgba(255,255,255,0.3);
+            --text-color: #2d3748;
+            --text-muted: #718096;
+            --body-bg: var(--primary-gradient);
+        }
+        [data-theme="dark"] {
+            --glass-bg: rgba(20,20,40,0.97);
+            --card-border: rgba(255,255,255,0.08);
+            --text-color: #e2e8f0;
+            --text-muted: #a0aec0;
+        }
+        [data-theme="dark"] body { color: var(--text-color); }
+        [data-theme="dark"] .tool-card { color: var(--text-color); }
+        [data-theme="dark"] .form-control, [data-theme="dark"] .form-select {
+            background: rgba(255,255,255,0.08); color: var(--text-color); border-color: rgba(255,255,255,0.15);
+        }
+        [data-theme="dark"] .accordion-item, [data-theme="dark"] .accordion-button {
+            background: rgba(255,255,255,0.06); color: var(--text-color);
+        }
+        [data-theme="dark"] .accordion-button:not(.collapsed) { background: rgba(102,126,234,0.2); }
+        [data-theme="dark"] .list-group-item { background: rgba(255,255,255,0.05); color: var(--text-color); border-color: rgba(255,255,255,0.1); }
+        [data-theme="dark"] .modal-content { background: #1a1a2e; color: var(--text-color); }
+        [data-theme="dark"] .modal-header, [data-theme="dark"] .modal-footer { border-color: rgba(255,255,255,0.1); }
+        [data-theme="dark"] #summaryResult { background: rgba(255,255,255,0.08) !important; }
+        [data-theme="dark"] .page-thumb { background: rgba(255,255,255,0.08); color: var(--text-color); }
+        [data-theme="dark"] .search-result-item { background: rgba(255,255,255,0.06); color: var(--text-color); }
+        [data-theme="dark"] .search-result-item mark { background: #f6ad55; color: #1a1a2e; }
+        * { box-sizing: border-box; }
+        body {
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+            color: var(--text-color);
+        }
+        .tool-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            border: 1px solid var(--card-border);
+            transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275), box-shadow 0.35s;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+        .tool-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(0,0,0,0.18); }
+        .hero-section {
+            background: rgba(255,255,255,0.13);
+            backdrop-filter: blur(30px);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 12px;
+            padding: 10px 24px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(102,126,234,0.35);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(102,126,234,0.5); filter: brightness(1.05); }
+        .btn-primary:disabled { opacity: 0.55; transform: none; }
+        .btn-success { border-radius: 12px; font-weight: 600; }
+        .drop-zone {
+            border: 2px dashed #667eea;
+            border-radius: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .drop-zone:hover { border-color: #764ba2; background: rgba(102,126,234,0.05); }
+        .drop-zone.dragover {
+            border-color: #764ba2;
+            background: linear-gradient(135deg, rgba(118,75,162,0.12), rgba(102,126,234,0.12));
+            transform: scale(1.02);
+        }
+        .progress { height: 8px; border-radius: 8px; background: rgba(0,0,0,0.08); overflow: hidden; }
+        .progress-bar { background: var(--primary-gradient); transition: width 0.3s ease; border-radius: 8px; }
+        .ad-placeholder {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed #dee2e6;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+        .ad-placeholder:hover { border-color: #667eea; }
+        .file-list {
+            max-height: 120px;
+            overflow-y: auto;
+            background: rgba(102,126,234,0.07);
+            border-radius: 10px;
+            padding: 8px;
+            margin-top: 8px;
+        }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 10px;
+            background: rgba(255,255,255,0.75);
+            border-radius: 8px;
+            margin-bottom: 6px;
+            font-size: 0.85em;
+            border-left: 3px solid #667eea;
+        }
+        [data-theme="dark"] .file-item { background: rgba(255,255,255,0.1); }
+        .theme-toggle {
+            position: fixed;
+            top: 16px; right: 16px;
+            z-index: 1100;
+            background: var(--glass-bg);
+            border-radius: 50%;
+            width: 52px; height: 52px;
+            border: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .theme-toggle:hover { transform: rotate(20deg) scale(1.08); }
+        .pwa-install-btn {
+            position: fixed;
+            top: 80px; right: 16px;
+            z-index: 1099;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(102,126,234,0.45);
+            cursor: pointer;
+            display: none;
+            align-items: center; gap: 6px;
+            transition: all 0.3s;
+        }
+        .pwa-install-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(102,126,234,0.55); }
+        .ai-tool::before { background: linear-gradient(135deg, #ff6b35, #f5576c); }
+        .viral-tool::before { background: linear-gradient(135deg, #00d4aa, #56ab2f); }
+        .new-tool::before { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .badge-new {
+            position: absolute;
+            top: 10px; right: 10px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+        /* PDF Search */
+        .search-result-item {
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(102,126,234,0.07);
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            border-left: 3px solid #667eea;
+        }
+        .search-result-item mark { background: #fef08a; color: #333; border-radius: 3px; padding: 1px 3px; }
+        .search-results-box { max-height: 180px; overflow-y: auto; margin-top: 8px; }
+        /* Page Reorder */
+        .page-thumb {
+            background: rgba(102,126,234,0.08);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 8px;
+            text-align: center;
+            cursor: grab;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+            position: relative;
+            user-select: none;
+        }
+        .page-thumb:hover { border-color: #667eea; transform: scale(1.03); }
+        .page-thumb.drag-over { border-color: #764ba2; background: rgba(118,75,162,0.15); }
+        .page-thumb.dragging { opacity: 0.5; }
+        .page-thumb .del-page {
+            position: absolute;
+            top: 4px; right: 4px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px; height: 20px;
+            font-size: 0.7rem;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .pages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-height: 200px; overflow-y: auto; }
+        /* QR Code */
+        #qrCanvas { border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+        /* Navbar */
+        .top-nav {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding: 10px 0;
+        }
+        .top-nav a { color: white; text-decoration: none; font-weight: 500; opacity: 0.9; transition: opacity 0.2s; margin: 0 12px; font-size: 0.9rem; }
+        .top-nav a:hover { opacity: 1; }
+        /* Footer */
+        .site-footer {
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(20px);
+            color: rgba(255,255,255,0.85);
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+        .site-footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+        .site-footer a:hover { color: white; }
+        .footer-links a { margin: 0 10px; font-size: 0.9rem; }
+        @media (max-width: 768px) {
+            .tool-card { margin-bottom: 1.5rem; }
+            .display-3 { font-size: 2rem; }
+            .pages-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .sticky-bottom-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: var(--glass-bg);
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding: 8px 20px;
+            text-align: center;
+            z-index: 990;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            display: none;
+        }
+        @media (max-width: 768px) { .sticky-bottom-bar { display: block; } }
+        .section-heading {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-heading::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+        }
+        .toast-container { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; }
+        .toast-msg {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.3s, fadeOut 0.3s 2.5s forwards;
+        }
+        @keyframes fadeInUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+        @keyframes fadeOut { to { opacity: 0; } }
+        .modal-content { border-radius: 20px; border: none; box-shadow: 0 30px 80px rgba(0,0,0,0.2); }
+        .modal-header { border-radius: 20px 20px 0 0; background: var(--primary-gradient); color: white; }
+        .modal-header .btn-close { filter: invert(1); }
+        .policy-content h5 { color: #667eea; margin-top: 1.5rem; }
+        .policy-content p, .policy-content li { line-height: 1.7; color: var(--text-muted); }
+        .about-icon { width: 80px; height: 80px; background: var(--primary-gradient); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .stat-box { background: rgba(102,126,234,0.08); border-radius: 12px; padding: 16px; text-align: center; }
+        .stat-box h3 { color: #667eea; font-weight: 700; margin: 0; }
+        .stat-box p { margin: 0; font-size: 0.85rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+<!-- Top Navigation -->
+<nav class="top-nav">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <a href="#" class="fw-bold fs-5"><i class="fas fa-file-pdf me-2"></i>PDF Tools Pro</a>
+        <div class="d-flex flex-wrap gap-1">
+            <a href="#tools"><i class="fas fa-th me-1"></i>Tools</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal"><i class="fas fa-info-circle me-1"></i>About</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal"><i class="fas fa-shield-alt me-1"></i>Privacy</a>
+            <a href="#faq"><i class="fas fa-question-circle me-1"></i>FAQ</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Theme Toggle -->
+<button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+</button>
+
+<!-- PWA Install Button -->
+<button class="pwa-install-btn" id="pwaInstallBtn">
+    <i class="fas fa-download"></i> Install App
+</button>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Hero Section -->
+<div class="container py-5">
+    <div class="hero-section text-white p-5 text-center mb-4">
+        <h1 class="display-3 fw-bold mb-3">
+            <i class="fas fa-file-pdf me-2"></i>PDF Tools Pro
+        </h1>
+        <p class="lead mb-4 fs-4">20+ FREE Tools — Merge, Split, Compress, Search, QR & More</p>
+        <div class="row justify-content-center g-3">
+            <div class="col-md-2 col-4"><i class="fas fa-infinity fs-2 text-warning d-block mb-1"></i><small>Unlimited</small></div>
+            <div class="col-md-2 col-4"><i class="fas fa-lock-open fs-2 text-success d-block mb-1"></i><small>No Signup</small></div>
+            <div class="col-md-2 col-4"><i class="fas fa-bolt fs-2 text-info d-block mb-1"></i><small>Instant</small></div>
+            <div class="col-md-2 col-4"><i class="fas fa-shield-alt fs-2 text-warning d-block mb-1"></i><small>Private</small></div>
+            <div class="col-md-2 col-4"><i class="fas fa-wifi-slash fs-2 text-danger d-block mb-1"></i><small>Offline Ready</small></div>
+            <div class="col-md-2 col-4"><i class="fas fa-brain fs-2 text-light d-block mb-1"></i><small>AI Tools</small></div>
+        </div>
+    </div>
+</div>
+
+<!-- Tools Grid -->
+<div class="container" id="tools">
+
+    <!-- ===== CORE TOOLS ===== -->
+    <div class="section-heading"><i class="fas fa-tools"></i> Core PDF Tools</div>
+    <div class="row g-4 mb-4">
+
+        <!-- 1. Merge PDF -->
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="tool-card p-4">
+                <div class="text-center mb-3">
+                    <i class="fas fa-compress-arrows-alt fa-2x text-primary mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">Merge PDF</h5>
+                    <small class="text-muted">Combine multiple PDFs</small>
+                </div>
+                <div class="drop-zone mb-3" id="mergeDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag PDFs Here</p>
+                    <input type="file" multiple accept=".pdf" class="d-none" id="mergeFiles">
+                </div>
+                <div class="file-list d-none" id="mergeFileList"></div>
+                <div class="progress mb-2 d-none" id="mergeProgress"><div class="progress-bar" style="width:0%">0%</div></div>
+                <button class="btn btn-primary w-100 mb-2" id="mergeBtn" disabled>
+                    <i class="fas fa-compress-arrows-alt me-1"></i>Merge <span class="badge bg-light text-primary" id="mergeBadge">0</span>
+                </button>
+                <div class="d-flex gap-2">
+                    <a href="#" class="btn btn-success flex-fill d-none" id="mergeDownload"><i class="fas fa-download me-1"></i>Download</a>
+                    <button class="btn btn-outline-success" id="mergeShare" title="Share"><i class="fab fa-whatsapp"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Split PDF -->
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="tool-card p-4">
+                <div class="text-center mb-3">
+                    <i class="fas fa-cut fa-2x text-success mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">Split PDF</h5>
+                    <small class="text-muted">Split into individual pages</small>
+                </div>
+                <div class="drop-zone mb-3" id="splitDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag PDF Here</p>
+                    <input type="file" accept=".pdf" class="d-none" id="splitFile">
+                </div>
+                <div class="file-list d-none" id="splitFileList"></div>
+                <div class="progress mb-2 d-none" id="splitProgress"><div class="progress-bar" style="width:0%">0%</div></div>
+                <button class="btn btn-primary w-100 mb-2" id="splitBtn" disabled>
+                    <i class="fas fa-cut me-1"></i>Split PDF
+                </button>
+                <div id="splitDownloads" class="d-none mt-1"></div>
+            </div>
+        </div>
+
+        <!-- 3. Compress PDF -->
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="tool-card p-4">
+                <div class="text-center mb-3">
+                    <i class="fas fa-compress fa-2x text-warning mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">Compress PDF</h5>
+                    <small class="text-muted">Reduce file size</small>
+                </div>
+                <div class="drop-zone mb-3" id="compressDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag PDF Here</p>
+                    <input type="file" accept=".pdf" class="d-none" id="compressFile">
+                </div>
+                <div class="file-list d-none" id="compressFileList"></div>
+                <div class="progress mb-2 d-none" id="compressProgress"><div class="progress-bar" style="width:0%">0%</div></div>
+                <div id="compressSizeInfo" class="small text-muted mb-2 d-none"></div>
+                <button class="btn btn-primary w-100 mb-2" id="compressBtn" disabled>
+                    <i class="fas fa-compress me-1"></i>Compress
+                </button>
+                <a href="#" class="btn btn-success w-100 d-none" id="compressDownload"><i class="fas fa-download me-1"></i>Download Compressed</a>
+            </div>
+        </div>
+
+        <!-- 4. Rotate PDF -->
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="tool-card p-4">
+                <div class="text-center mb-3">
+                    <i class="fas fa-redo fa-2x text-info mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">Rotate PDF</h5>
+                    <small class="text-muted">Rotate all pages</small>
+                </div>
+                <div class="drop-zone mb-3" id="rotateDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag PDF Here</p>
+                    <input type="file" accept=".pdf" class="d-none" id="rotateFile">
+                </div>
+                <div class="file-list d-none" id="rotateFileList"></div>
+                <select class="form-select mb-2" id="rotateAngle">
+                    <option value="90">Rotate 90° (Clockwise)</option>
+                    <option value="180">Rotate 180°</option>
+                    <option value="270">Rotate 270° (Counter-CW)</option>
+                </select>
+                <button class="btn btn-primary w-100 mb-2" id="rotateBtn" disabled>
+                    <i class="fas fa-redo me-1"></i>Rotate
+                </button>
+                <a href="#" class="btn btn-success w-100 d-none" id="rotateDownload"><i class="fas fa-download me-1"></i>Download Rotated</a>
+            </div>
+        </div>
+
+        <!-- 5. JPG to PDF -->
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="tool-card p-4">
+                <div class="text-center mb-3">
+                    <i class="fas fa-image fa-2x text-info mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">JPG to PDF</h5>
+                    <small class="text-muted">Images → PDF document</small>
+                </div>
+                <div class="drop-zone mb-3" id="imgDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag Images</p>
+                    <input type="file" multiple accept="image/*" class="d-none" id="imgFiles">
+                </div>
+                <div class="file-list d-none" id="imgFileList"></div>
+                <div class="progress mb-2 d-none" id="imgProgress"><div class="progress-bar" style="width:0%">0%</div></div>
+                <button class="btn btn-primary w-100 mb-2" id="imgBtn" disabled>
+                    <i class="fas fa-exchange-alt me-1"></i>Convert to PDF
+                </button>
+                <a href="#" class="btn btn-success w-100 d-none" id="imgDownload"><i class="fas fa-download me-1"></i>Download PDF</a>
+            </div>
+        </div>
+
+        <!-- 6. Watermark -->
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="tool-card p-4">
+                <div class="text-center mb-3">
+                    <i class="fas fa-stamp fa-2x text-danger mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">Add Watermark</h5>
+                    <small class="text-muted">Stamp text on all pages</small>
+                </div>
+                <div class="drop-zone mb-3" id="watermarkDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag PDF Here</p>
+                    <input type="file" accept=".pdf" class="d-none" id="watermarkFile">
+                </div>
+                <div class="file-list d-none" id="watermarkFileList"></div>
+                <input type="text" class="form-control mb-2" id="watermarkText" placeholder="Watermark text" value="CONFIDENTIAL">
+                <button class="btn btn-primary w-100 mb-2" id="watermarkBtn" disabled>
+                    <i class="fas fa-stamp me-1"></i>Add Watermark
+                </button>
+                <a href="#" class="btn btn-success w-100 d-none" id="watermarkDownload"><i class="fas fa-download me-1"></i>Download</a>
+            </div>
+        </div>
+
+        <!-- 7. Password Protect -->
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="tool-card p-4">
+                <div class="text-center mb-3">
+                    <i class="fas fa-lock fa-2x text-warning mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">Password PDF</h5>
+                    <small class="text-muted">Encrypt & protect PDF</small>
+                </div>
+                <div class="drop-zone mb-3" id="passwordDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag PDF Here</p>
+                    <input type="file" accept=".pdf" class="d-none" id="passwordFile">
+                </div>
+                <div class="file-list d-none" id="passwordFileList"></div>
+                <div class="input-group mb-2">
+                    <input type="password" class="form-control" id="pdfPassword" placeholder="Enter strong password">
+                    <button class="btn btn-outline-secondary" type="button" id="togglePwd"><i class="fas fa-eye"></i></button>
+                </div>
+                <button class="btn btn-primary w-100 mb-2" id="passwordBtn" disabled>
+                    <i class="fas fa-lock me-1"></i>Protect PDF
+                </button>
+                <a href="#" class="btn btn-success w-100 d-none" id="passwordDownload"><i class="fas fa-download me-1"></i>Download Protected</a>
+                <small class="text-muted d-block mt-1 text-center"><i class="fas fa-info-circle me-1"></i>128-bit RC4 encryption via pdf-lib</small>
+            </div>
+        </div>
+
+        <!-- 8. PDF to Word -->
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="tool-card p-4">
+                <div class="text-center mb-3">
+                    <i class="fas fa-file-word fa-2x text-primary mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">PDF to Text</h5>
+                    <small class="text-muted">Extract text content</small>
+                </div>
+                <div class="drop-zone mb-3" id="wordDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag PDF Here</p>
+                    <input type="file" accept=".pdf" class="d-none" id="wordFile">
+                </div>
+                <div class="file-list d-none" id="wordFileList"></div>
+                <div class="progress mb-2 d-none" id="wordProgress"><div class="progress-bar" style="width:0%">0%</div></div>
+                <button class="btn btn-primary w-100 mb-2" id="wordBtn" disabled>
+                    <i class="fas fa-file-export me-1"></i>Extract Text
+                </button>
+                <a href="#" class="btn btn-success w-100 d-none" id="wordDownload"><i class="fas fa-download me-1"></i>Download .txt</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NEW POWER TOOLS ===== -->
+    <div class="section-heading"><i class="fas fa-rocket"></i> New Power Tools</div>
+    <div class="row g-4 mb-4">
+
+        <!-- 9. PDF Search -->
+        <div class="col-xl-4 col-lg-6 col-md-6 new-tool">
+            <div class="tool-card p-4">
+                <span class="badge-new">NEW</span>
+                <div class="text-center mb-3">
+                    <i class="fas fa-search fa-2x text-primary mb-2 d-block" style="color:#f093fb!important"></i>
+                    <h5 class="fw-bold mb-0">PDF Search</h5>
+                    <small class="text-muted">Find text inside PDF — highlighted results</small>
+                </div>
+                <div class="drop-zone mb-3" id="searchDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag PDF Here</p>
+                    <input type="file" accept=".pdf" class="d-none" id="searchFile">
+                </div>
+                <div class="file-list d-none" id="searchFileList"></div>
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="searchQuery" placeholder="Enter search keyword..." disabled>
+                    <button class="btn btn-primary" id="searchBtn" disabled>
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div id="searchStats" class="small text-muted mb-1 d-none"></div>
+                <div class="search-results-box" id="searchResults"></div>
+            </div>
+        </div>
+
+        <!-- 10. PDF Page Delete/Reorder -->
+        <div class="col-xl-4 col-lg-6 col-md-6 new-tool">
+            <div class="tool-card p-4">
+                <span class="badge-new">NEW</span>
+                <div class="text-center mb-3">
+                    <i class="fas fa-layer-group fa-2x mb-2 d-block" style="color:#f093fb"></i>
+                    <h5 class="fw-bold mb-0">Page Editor</h5>
+                    <small class="text-muted">Delete pages & drag to reorder</small>
+                </div>
+                <div class="drop-zone mb-3" id="pageEditDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag PDF Here</p>
+                    <input type="file" accept=".pdf" class="d-none" id="pageEditFile">
+                </div>
+                <div id="pageEditInfo" class="small text-muted mb-2 d-none text-center"></div>
+                <div class="pages-grid d-none mb-2" id="pagesGrid"></div>
+                <div class="progress mb-2 d-none" id="pageEditProgress"><div class="progress-bar" style="width:0%">0%</div></div>
+                <button class="btn btn-primary w-100 mb-2 d-none" id="pageEditBtn">
+                    <i class="fas fa-save me-1"></i>Save Reordered PDF
+                </button>
+                <a href="#" class="btn btn-success w-100 d-none" id="pageEditDownload"><i class="fas fa-download me-1"></i>Download</a>
+            </div>
+        </div>
+
+        <!-- 11. Image Compress -->
+        <div class="col-xl-4 col-lg-6 col-md-6 new-tool">
+            <div class="tool-card p-4">
+                <span class="badge-new">NEW</span>
+                <div class="text-center mb-3">
+                    <i class="fas fa-file-image fa-2x mb-2 d-block" style="color:#f093fb"></i>
+                    <h5 class="fw-bold mb-0">Image Compress</h5>
+                    <small class="text-muted">Reduce JPG/PNG file size</small>
+                </div>
+                <div class="drop-zone mb-3" id="imgCompressDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag Image (JPG/PNG)</p>
+                    <input type="file" accept="image/jpeg,image/png,image/webp" class="d-none" id="imgCompressFile">
+                </div>
+                <div class="file-list d-none" id="imgCompressFileList"></div>
+                <label class="form-label small fw-semibold">Quality: <span id="qualityVal">75</span>%</label>
+                <input type="range" class="form-range mb-2" id="imgQuality" min="10" max="100" value="75">
+                <div id="imgCompressSizeInfo" class="small text-muted mb-2 d-none"></div>
+                <button class="btn btn-primary w-100 mb-2" id="imgCompressBtn" disabled>
+                    <i class="fas fa-compress-alt me-1"></i>Compress Image
+                </button>
+                <a href="#" class="btn btn-success w-100 d-none" id="imgCompressDownload"><i class="fas fa-download me-1"></i>Download Compressed</a>
+            </div>
+        </div>
+
+        <!-- 12. QR Code Generator -->
+        <div class="col-xl-4 col-lg-6 col-md-6 viral-tool">
+            <div class="tool-card p-4">
+                <span class="badge-new">VIRAL</span>
+                <div class="text-center mb-3">
+                    <i class="fas fa-qrcode fa-2x text-success mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">QR Code Generator</h5>
+                    <small class="text-muted">Text / URL → Shareable QR</small>
+                </div>
+                <textarea class="form-control mb-2" id="qrInput" rows="3" placeholder="Enter text, URL, phone number..."></textarea>
+                <div class="row g-2 mb-2">
+                    <div class="col-6">
+                        <label class="form-label small">Size</label>
+                        <select class="form-select form-select-sm" id="qrSize">
+                            <option value="150">Small</option>
+                            <option value="250" selected>Medium</option>
+                            <option value="400">Large</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label small">Color</label>
+                        <input type="color" class="form-control form-control-sm form-control-color w-100" id="qrColor" value="#000000">
+                    </div>
+                </div>
+                <button class="btn btn-primary w-100 mb-3" id="qrBtn">
+                    <i class="fas fa-qrcode me-1"></i>Generate QR Code
+                </button>
+                <div id="qrOutput" class="text-center d-none">
+                    <canvas id="qrCanvas"></canvas>
+                    <div class="mt-2">
+                        <a href="#" class="btn btn-success btn-sm" id="qrDownload"><i class="fas fa-download me-1"></i>Download PNG</a>
+                        <button class="btn btn-outline-primary btn-sm" id="qrShare"><i class="fab fa-whatsapp me-1"></i>Share</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 13. AI Summary -->
+        <div class="col-xl-4 col-lg-6 col-md-6 ai-tool">
+            <div class="tool-card p-4">
+                <div class="text-center mb-3">
+                    <i class="fas fa-brain fa-2x text-danger mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">AI Summary</h5>
+                    <small class="text-muted">Smart PDF analysis & summary</small>
+                </div>
+                <div class="drop-zone mb-3" id="summaryDrop">
+                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
+                    <p class="mb-0 fw-semibold small">Click or Drag PDF Here</p>
+                    <input type="file" accept=".pdf" class="d-none" id="summaryFile">
+                </div>
+                <div class="file-list d-none" id="summaryFileList"></div>
+                <div class="progress mb-2 d-none" id="summaryProgress"><div class="progress-bar" style="width:0%">0%</div></div>
+                <button class="btn btn-primary w-100 mb-2" id="summaryBtn" disabled>
+                    <i class="fas fa-magic me-1"></i>Generate AI Summary
+                </button>
+                <div id="summaryResult" class="d-none p-3 rounded small" style="background:rgba(102,126,234,0.08);max-height:160px;overflow-y:auto"></div>
+            </div>
+        </div>
+
+        <!-- 14. Recent Files -->
+        <div class="col-xl-4 col-lg-6 col-md-6 viral-tool">
+            <div class="tool-card p-4">
+                <div class="text-center mb-3">
+                    <i class="fas fa-history fa-2x text-success mb-2 d-block"></i>
+                    <h5 class="fw-bold mb-0">Recent Files</h5>
+                    <small class="text-muted">Quick access to processed files</small>
+                </div>
+                <div id="recentFiles" class="list-group list-group-flush">
+                    <div class="list-group-item text-muted text-center py-3 border-0 small">No recent files yet</div>
+                </div>
+                <button class="btn btn-outline-danger w-100 mt-3" id="clearHistory">
+                    <i class="fas fa-trash me-1"></i>Clear History
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Choose Us + Ad -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-8">
+            <div class="tool-card p-4" style="background:var(--primary-gradient);color:white;">
+                <h4 class="fw-bold mb-3"><i class="fas fa-shield-alt me-2"></i>Why PDF Tools Pro?</h4>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="d-flex gap-2 align-items-start">
+                            <i class="fas fa-check-circle text-warning mt-1"></i>
+                            <span>100% client-side — your files never leave your device</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex gap-2 align-items-start">
+                            <i class="fas fa-check-circle text-warning mt-1"></i>
+                            <span>No signup, no watermarks, no hidden limits</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex gap-2 align-items-start">
+                            <i class="fas fa-check-circle text-warning mt-1"></i>
+                            <span>AI-powered tools included completely FREE</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex gap-2 align-items-start">
+                            <i class="fas fa-check-circle text-warning mt-1"></i>
+                            <span>Works offline after first load (PWA)</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex gap-2 align-items-start">
+                            <i class="fas fa-check-circle text-warning mt-1"></i>
+                            <span>Instant download — no email required</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex gap-2 align-items-start">
+                            <i class="fas fa-check-circle text-warning mt-1"></i>
+                            <span>Works on mobile, tablet and desktop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ad-placeholder text-center p-5 h-100 d-flex align-items-center justify-content-center flex-column">
+                <i class="fas fa-ad fa-3x text-primary mb-3"></i>
+                <h5 class="mb-0">300×600 Ad</h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div id="faq" class="row mb-5">
+        <div class="col-12">
+            <h4 class="text-white fw-bold mb-3"><i class="fas fa-question-circle me-2"></i>Frequently Asked Questions</h4>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item border-0 mb-2 rounded-3 overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Is it really 100% free and private?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Yes! Everything is free forever. All processing happens entirely in your browser using JavaScript. Your files are never uploaded to any server — we literally cannot see them.</div>
+                    </div>
+                </div>
+                <div class="accordion-item border-0 mb-2 rounded-3 overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Does it work on mobile (Android/iPhone)?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Yes! Fully optimized for all screen sizes. You can also install it as an app on your phone (PWA) by tapping the "Install App" button — no app store needed.</div>
+                    </div>
+                </div>
+                <div class="accordion-item border-0 mb-2 rounded-3 overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            What is the file size limit?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">There's no strict limit — it depends on your device's memory. Large files (100MB+) may be slow on low-end devices. Most common PDF sizes (under 50MB) work perfectly.</div>
+                    </div>
+                </div>
+                <div class="accordion-item border-0 mb-2 rounded-3 overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            How does the PDF Search work?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">The PDF Search tool reads your PDF's text layer and finds every occurrence of your keyword — showing the page number and surrounding text with the keyword highlighted in yellow.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h5 class="text-white fw-bold mb-3"><i class="fas fa-file-pdf me-2"></i>PDF Tools Pro</h5>
+                <p class="small" style="color:rgba(255,255,255,0.65)">The most trusted free online PDF toolkit. Fast, private, and powerful — all in your browser.</p>
+                <div class="d-flex gap-3 mt-3">
+                    <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h6 class="text-white fw-bold mb-3">Tools</h6>
+                <div class="row">
+                    <div class="col-6">
+                        <ul class="list-unstyled small" style="color:rgba(255,255,255,0.65)">
+                            <li class="mb-1"><a href="#tools">Merge PDF</a></li>
+                            <li class="mb-1"><a href="#tools">Split PDF</a></li>
+                            <li class="mb-1"><a href="#tools">Compress PDF</a></li>
+                            <li class="mb-1"><a href="#tools">Rotate PDF</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <ul class="list-unstyled small" style="color:rgba(255,255,255,0.65)">
+                            <li class="mb-1"><a href="#tools">PDF Search</a></li>
+                            <li class="mb-1"><a href="#tools">QR Code</a></li>
+                            <li class="mb-1"><a href="#tools">Page Editor</a></li>
+                            <li class="mb-1"><a href="#tools">Image Compress</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h6 class="text-white fw-bold mb-3">Legal</h6>
+                <ul class="list-unstyled small" style="color:rgba(255,255,255,0.65)">
+                    <li class="mb-1"><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About Us</a></li>
+                    <li class="mb-1"><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a></li>
+                    <li class="mb-1"><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Service</a></li>
+                    <li class="mb-1"><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr style="border-color:rgba(255,255,255,0.15)">
+        <div class="text-center small" style="color:rgba(255,255,255,0.5)">
+            &copy; 2025 PDF Tools Pro — All processing done locally in your browser. 100% Private.
+        </div>
+    </div>
+</footer>
+
+<!-- Mobile sticky bar -->
+<div class="sticky-bottom-bar d-md-none">
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="#tools" class="btn btn-primary btn-sm"><i class="fas fa-tools me-1"></i>All Tools</a>
+        <button class="btn btn-outline-primary btn-sm" id="pwaInstallBottom"><i class="fas fa-download me-1"></i>Install App</button>
+    </div>
+</div>
+
+<!-- About Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold"><i class="fas fa-info-circle me-2"></i>About PDF Tools Pro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="text-center mb-4">
+                    <div class="about-icon"><i class="fas fa-file-pdf fa-2x text-white"></i></div>
+                    <h4 class="fw-bold">PDF Tools Pro</h4>
+                    <p class="text-muted">Your browser-based PDF powerhouse — free forever</p>
+                </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-4"><div class="stat-box"><h3>20+</h3><p>PDF Tools</p></div></div>
+                    <div class="col-4"><div class="stat-box"><h3>100%</h3><p>Free & Private</p></div></div>
+                    <div class="col-4"><div class="stat-box"><h3>0</h3><p>Files Uploaded</p></div></div>
+                </div>
+                <p>PDF Tools Pro is a completely free, browser-based PDF utility suite. Every operation — merging, splitting, compressing, searching, watermarking, rotating, and more — runs entirely on your device using modern JavaScript libraries.</p>
+                <p class="mb-1"><strong>Built with:</strong> pdf-lib, PDF.js, Bootstrap 5, Font Awesome, and pure JavaScript.</p>
+                <p class="mb-0"><strong>Mission:</strong> To give everyone access to powerful document tools — completely free, with zero compromise on privacy.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Privacy Policy Modal -->
+<div class="modal fade" id="privacyModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold"><i class="fas fa-shield-alt me-2"></i>Privacy Policy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4 policy-content">
+                <p class="text-muted small">Last updated: April 2025</p>
+                <h5>1. No File Uploads</h5>
+                <p>All PDF processing on PDF Tools Pro occurs entirely within your web browser. Your files are <strong>never sent to any server</strong>. We have no technical capability to access, read, or store your documents.</p>
+                <h5>2. Local Storage</h5>
+                <p>We use your browser's local storage only to remember your theme preference (dark/light mode) and a short list of recently processed file names (not the file content). You can clear this anytime using the "Clear History" button.</p>
+                <h5>3. No Personal Data</h5>
+                <p>We do not collect your name, email, IP address, or any personally identifiable information. No account or registration is required.</p>
+                <h5>4. Cookies</h5>
+                <p>We do not use tracking cookies. We may use third-party advertising (e.g. Google AdSense) which may use cookies for ad personalization. You can opt out via <a href="https://adssettings.google.com" target="_blank">Google Ad Settings</a>.</p>
+                <h5>5. Analytics</h5>
+                <p>We may use privacy-respecting analytics (e.g. Google Analytics or Plausible) to understand aggregate usage — which tools are used most. This data is anonymized and cannot identify individuals.</p>
+                <h5>6. Children's Privacy</h5>
+                <p>This service is not directed to children under 13. We do not knowingly collect data from children.</p>
+                <h5>7. Contact</h5>
+                <p>Questions about this policy? Email us at <strong>privacy@pdftoolspro.com</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal">I Understand</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terms of Service Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold"><i class="fas fa-file-contract me-2"></i>Terms of Service</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4 policy-content">
+                <p class="text-muted small">Last updated: April 2025</p>
+                <h5>1. Acceptance of Terms</h5>
+                <p>By using PDF Tools Pro, you agree to these Terms of Service. If you do not agree, please discontinue use.</p>
+                <h5>2. Free Service</h5>
+                <p>PDF Tools Pro is provided free of charge. We reserve the right to change, suspend, or discontinue any aspect of the service at any time.</p>
+                <h5>3. Acceptable Use</h5>
+                <p>You agree to use this tool only for lawful purposes. You must not use it to process, distribute, or create content that is illegal, infringing, or harmful.</p>
+                <h5>4. No Warranties</h5>
+                <p>This service is provided "as is" without warranty of any kind. We do not guarantee uninterrupted availability or error-free operation.</p>
+                <h5>5. Limitation of Liability</h5>
+                <p>PDF Tools Pro is not liable for any damages resulting from use or inability to use this service, including loss of data.</p>
+                <h5>6. Intellectual Property</h5>
+                <p>All content and code of PDF Tools Pro is our intellectual property. You may not reproduce or distribute it without written permission.</p>
+                <h5>7. Changes</h5>
+                <p>We may update these terms at any time. Continued use of the service constitutes acceptance of updated terms.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-dismiss="modal">I Agree</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+<script>
+'use strict';
+
+// Set PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+
+// ========== UTILITIES ==========
+function showToast(msg, type = 'success') {
+    const container = document.getElementById('toastContainer');
+    const el = document.createElement('div');
+    el.className = 'toast-msg';
+    el.style.background = type === 'error' ? '#e53e3e' : type === 'info' ? '#667eea' : '#38a169';
+    el.innerHTML = `<i class="fas fa-${type === 'error' ? 'times-circle' : type === 'info' ? 'info-circle' : 'check-circle'} me-2"></i>${msg}`;
+    container.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
+}
+
+function setProgress(barId, pct) {
+    const wrap = document.getElementById(barId);
+    if (!wrap) return;
+    wrap.classList.remove('d-none');
+    const bar = wrap.querySelector('.progress-bar');
+    bar.style.width = pct + '%';
+    bar.textContent = Math.round(pct) + '%';
+    if (pct >= 100) setTimeout(() => wrap.classList.add('d-none'), 800);
+}
+
+function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / 1024 / 1024).toFixed(2) + ' MB';
+}
+
+function showFileList(containerId, files) {
+    const c = document.getElementById(containerId);
+    if (!c) return;
+    const arr = Array.from(files);
+    c.innerHTML = arr.slice(0, 4).map(f =>
+        `<div class="file-item">
+            <span class="text-truncate" style="max-width:160px"><i class="fas fa-file-pdf me-1 text-primary"></i>${f.name}</span>
+            <small class="text-muted ms-2 flex-shrink-0">${formatSize(f.size)}</small>
+        </div>`
+    ).join('') + (arr.length > 4 ? `<div class="file-item text-center text-muted">+${arr.length - 4} more</div>` : '');
+    c.classList.remove('d-none');
+}
+
+let recentFiles = JSON.parse(localStorage.getItem('pdfRecent') || '[]');
+
+function addRecent(name) {
+    recentFiles = recentFiles.filter(f => f.name !== name);
+    recentFiles.unshift({ name, time: Date.now() });
+    recentFiles = recentFiles.slice(0, 6);
+    localStorage.setItem('pdfRecent', JSON.stringify(recentFiles));
+    renderRecent();
+}
+
+function renderRecent() {
+    const el = document.getElementById('recentFiles');
+    if (recentFiles.length === 0) {
+        el.innerHTML = '<div class="list-group-item text-muted text-center py-3 border-0 small">No recent files yet</div>';
+        return;
+    }
+    el.innerHTML = recentFiles.map(f =>
+        `<div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border-0 small py-2">
+            <span class="text-truncate" style="max-width:160px"><i class="fas fa-file me-1 text-primary"></i>${f.name}</span>
+            <small class="text-muted flex-shrink-0">${new Date(f.time).toLocaleTimeString()}</small>
+        </div>`
+    ).join('');
+}
+
+function triggerDownload(blobOrUrl, filename, type = 'application/pdf') {
+    let url;
+    if (typeof blobOrUrl === 'string') {
+        url = blobOrUrl;
+    } else {
+        const blob = new Blob([blobOrUrl], { type });
+        url = URL.createObjectURL(blob);
+    }
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    addRecent(filename);
+}
+
+function setupDropZone(dropId, inputId, callback) {
+    const drop = document.getElementById(dropId);
+    const input = document.getElementById(inputId);
+    if (!drop || !input) return;
+    drop.addEventListener('click', () => input.click());
+    drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('dragover'); });
+    drop.addEventListener('dragleave', () => drop.classList.remove('dragover'));
+    drop.addEventListener('drop', e => {
+        e.preventDefault();
+        drop.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        if (files.length) {
+            Object.defineProperty(input, 'files', { value: files, configurable: true });
+            input.dispatchEvent(new Event('change'));
+        }
+    });
+    input.addEventListener('change', () => { if (input.files.length) callback(input.files); });
+}
+
+// ========== THEME ==========
+(function initTheme() {
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        toggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    toggle.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        toggle.innerHTML = next === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+})();
+
+// ========== PWA ==========
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('pwaInstallBtn').style.display = 'flex';
+    const btm = document.getElementById('pwaInstallBottom');
+    if (btm) btm.style.display = 'inline-flex';
+});
+
+function handleInstall() {
+    if (!deferredPrompt) { showToast('Open in Chrome/Edge browser to install', 'info'); return; }
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(res => {
+        if (res.outcome === 'accepted') showToast('App installed successfully!');
+        deferredPrompt = null;
+        document.getElementById('pwaInstallBtn').style.display = 'none';
+    });
+}
+document.getElementById('pwaInstallBtn').addEventListener('click', handleInstall);
+const pwaBottom = document.getElementById('pwaInstallBottom');
+if (pwaBottom) pwaBottom.addEventListener('click', handleInstall);
+
+// ========== 1. MERGE PDF ==========
+(function() {
+    let mergeFileList = [];
+    const btn = document.getElementById('mergeBtn');
+    const badge = document.getElementById('mergeBadge');
+    const dlBtn = document.getElementById('mergeDownload');
+
+    setupDropZone('mergeDrop', 'mergeFiles', files => {
+        mergeFileList = Array.from(files);
+        showFileList('mergeFileList', files);
+        btn.disabled = false;
+        badge.textContent = mergeFileList.length;
+    });
+
+    btn.addEventListener('click', async () => {
+        if (!mergeFileList.length) return;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Merging...';
+        setProgress('mergeProgress', 10);
+        try {
+            const merged = await PDFLib.PDFDocument.create();
+            for (let i = 0; i < mergeFileList.length; i++) {
+                const buf = await mergeFileList[i].arrayBuffer();
+                const doc = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
+                const pages = await merged.copyPages(doc, doc.getPageIndices());
+                pages.forEach(p => merged.addPage(p));
+                setProgress('mergeProgress', 10 + (i + 1) / mergeFileList.length * 85);
+            }
+            const bytes = await merged.save();
+            const name = 'merged_' + Date.now() + '.pdf';
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            dlBtn.href = url;
+            dlBtn.download = name;
+            dlBtn.classList.remove('d-none');
+            setProgress('mergeProgress', 100);
+            addRecent(name);
+            showToast(`Merged ${mergeFileList.length} PDFs successfully!`);
+        } catch (err) {
+            showToast('Merge failed: ' + err.message, 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fas fa-compress-arrows-alt me-1"></i>Merge <span class="badge bg-light text-primary">${mergeFileList.length}</span>`;
+    });
+
+    document.getElementById('mergeShare').addEventListener('click', () => {
+        if (navigator.share) navigator.share({ title: 'PDF Tools Pro', url: location.href });
+        else { navigator.clipboard.writeText(location.href); showToast('Link copied!', 'info'); }
+    });
+})();
+
+// ========== 2. SPLIT PDF ==========
+(function() {
+    let splitDoc = null, splitName = '';
+    const btn = document.getElementById('splitBtn');
+
+    setupDropZone('splitDrop', 'splitFile', async files => {
+        splitName = files[0].name.replace('.pdf', '');
+        showFileList('splitFileList', files);
+        btn.disabled = false;
+    });
+
+    btn.addEventListener('click', async () => {
+        const input = document.getElementById('splitFile');
+        if (!input.files.length) return;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Splitting...';
+        setProgress('splitProgress', 5);
+        const downloads = document.getElementById('splitDownloads');
+        downloads.innerHTML = '';
+        downloads.classList.remove('d-none');
+        try {
+            const buf = await input.files[0].arrayBuffer();
+            const doc = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
+            const total = doc.getPageCount();
+            for (let i = 0; i < total; i++) {
+                const single = await PDFLib.PDFDocument.create();
+                const [page] = await single.copyPages(doc, [i]);
+                single.addPage(page);
+                const bytes = await single.save();
+                const blob = new Blob([bytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const fname = `${splitName}_page${i + 1}.pdf`;
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fname;
+                a.className = 'btn btn-sm btn-outline-success w-100 mb-1';
+                a.innerHTML = `<i class="fas fa-download me-1"></i>Page ${i + 1}`;
+                downloads.appendChild(a);
+                addRecent(fname);
+                setProgress('splitProgress', 5 + (i + 1) / total * 90);
+            }
+            setProgress('splitProgress', 100);
+            showToast(`Split into ${total} pages!`);
+        } catch (err) {
+            showToast('Split failed: ' + err.message, 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-cut me-1"></i>Split PDF';
+    });
+})();
+
+// ========== 3. COMPRESS PDF ==========
+(function() {
+    let compressBlob = null;
+    const btn = document.getElementById('compressBtn');
+    const dlBtn = document.getElementById('compressDownload');
+    const info = document.getElementById('compressSizeInfo');
+
+    setupDropZone('compressDrop', 'compressFile', files => {
+        showFileList('compressFileList', files);
+        btn.disabled = false;
+        info.classList.add('d-none');
+        dlBtn.classList.add('d-none');
+    });
+
+    btn.addEventListener('click', async () => {
+        const input = document.getElementById('compressFile');
+        if (!input.files.length) return;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Compressing...';
+        setProgress('compressProgress', 10);
+        try {
+            const file = input.files[0];
+            const origSize = file.size;
+            const buf = await file.arrayBuffer();
+            setProgress('compressProgress', 40);
+            const doc = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
+            const bytes = await doc.save({ objectsPerTick: 50, useObjectStreams: true });
+            setProgress('compressProgress', 90);
+            const newSize = bytes.length;
+            const saved = Math.max(0, ((origSize - newSize) / origSize * 100)).toFixed(1);
+            const name = 'compressed_' + input.files[0].name;
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            dlBtn.href = url;
+            dlBtn.download = name;
+            dlBtn.classList.remove('d-none');
+            info.textContent = `Before: ${formatSize(origSize)} → After: ${formatSize(newSize)} (${saved}% saved)`;
+            info.classList.remove('d-none');
+            setProgress('compressProgress', 100);
+            addRecent(name);
+            showToast(`Compressed! Saved ${saved}%`);
+        } catch (err) {
+            showToast('Compress failed: ' + err.message, 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-compress me-1"></i>Compress';
+    });
+})();
+
+// ========== 4. ROTATE PDF ==========
+(function() {
+    const btn = document.getElementById('rotateBtn');
+    const dlBtn = document.getElementById('rotateDownload');
+
+    setupDropZone('rotateDrop', 'rotateFile', files => {
+        showFileList('rotateFileList', files);
+        btn.disabled = false;
+        dlBtn.classList.add('d-none');
+    });
+
+    btn.addEventListener('click', async () => {
+        const input = document.getElementById('rotateFile');
+        if (!input.files.length) return;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Rotating...';
+        try {
+            const angle = parseInt(document.getElementById('rotateAngle').value);
+            const buf = await input.files[0].arrayBuffer();
+            const doc = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
+            doc.getPages().forEach(p => {
+                const cur = p.getRotation().angle;
+                p.setRotation(PDFLib.degrees((cur + angle) % 360));
+            });
+            const bytes = await doc.save();
+            const name = 'rotated_' + input.files[0].name;
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            dlBtn.href = URL.createObjectURL(blob);
+            dlBtn.download = name;
+            dlBtn.classList.remove('d-none');
+            addRecent(name);
+            showToast('Rotated successfully!');
+        } catch (err) {
+            showToast('Rotate failed: ' + err.message, 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-redo me-1"></i>Rotate';
+    });
+})();
+
+// ========== 5. IMAGE TO PDF ==========
+(function() {
+    let imgFiles = [];
+    const btn = document.getElementById('imgBtn');
+    const dlBtn = document.getElementById('imgDownload');
+
+    setupDropZone('imgDrop', 'imgFiles', files => {
+        imgFiles = Array.from(files);
+        showFileList('imgFileList', files);
+        btn.disabled = false;
+        dlBtn.classList.add('d-none');
+    });
+
+    btn.addEventListener('click', async () => {
+        if (!imgFiles.length) return;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Converting...';
+        setProgress('imgProgress', 5);
+        try {
+            const doc = await PDFLib.PDFDocument.create();
+            for (let i = 0; i < imgFiles.length; i++) {
+                const file = imgFiles[i];
+                const ab = await file.arrayBuffer();
+                let img;
+                if (file.type === 'image/png') img = await doc.embedPng(ab);
+                else img = await doc.embedJpg(ab);
+                const page = doc.addPage([img.width, img.height]);
+                page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+                setProgress('imgProgress', 5 + (i + 1) / imgFiles.length * 90);
+            }
+            const bytes = await doc.save();
+            const name = 'images_' + Date.now() + '.pdf';
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            dlBtn.href = URL.createObjectURL(blob);
+            dlBtn.download = name;
+            dlBtn.classList.remove('d-none');
+            setProgress('imgProgress', 100);
+            addRecent(name);
+            showToast(`Converted ${imgFiles.length} image(s) to PDF!`);
+        } catch (err) {
+            showToast('Conversion failed: ' + err.message, 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-exchange-alt me-1"></i>Convert to PDF';
+    });
+})();
+
+// ========== 6. WATERMARK ==========
+(function() {
+    const btn = document.getElementById('watermarkBtn');
+    const dlBtn = document.getElementById('watermarkDownload');
+
+    setupDropZone('watermarkDrop', 'watermarkFile', files => {
+        showFileList('watermarkFileList', files);
+        btn.disabled = false;
+        dlBtn.classList.add('d-none');
+    });
+
+    btn.addEventListener('click', async () => {
+        const input = document.getElementById('watermarkFile');
+        if (!input.files.length) return;
+        const text = document.getElementById('watermarkText').value.trim() || 'CONFIDENTIAL';
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Adding...';
+        try {
+            const buf = await input.files[0].arrayBuffer();
+            const doc = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
+            const font = await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+            doc.getPages().forEach(page => {
+                const { width, height } = page.getSize();
+                page.drawText(text, {
+                    x: width / 2 - (text.length * 18),
+                    y: height / 2,
+                    size: 52,
+                    font,
+                    color: PDFLib.rgb(0.85, 0.1, 0.1),
+                    opacity: 0.22,
+                    rotate: PDFLib.degrees(-45),
+                });
+            });
+            const bytes = await doc.save();
+            const name = 'watermarked_' + input.files[0].name;
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            dlBtn.href = URL.createObjectURL(blob);
+            dlBtn.download = name;
+            dlBtn.classList.remove('d-none');
+            addRecent(name);
+            showToast('Watermark added!');
+        } catch (err) {
+            showToast('Watermark failed: ' + err.message, 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-stamp me-1"></i>Add Watermark';
+    });
+})();
+
+// ========== 7. PASSWORD PDF ==========
+(function() {
+    const btn = document.getElementById('passwordBtn');
+    const dlBtn = document.getElementById('passwordDownload');
+
+    setupDropZone('passwordDrop', 'passwordFile', files => {
+        showFileList('passwordFileList', files);
+        btn.disabled = false;
+        dlBtn.classList.add('d-none');
+    });
+
+    document.getElementById('togglePwd').addEventListener('click', () => {
+        const inp = document.getElementById('pdfPassword');
+        const icon = document.querySelector('#togglePwd i');
+        if (inp.type === 'password') { inp.type = 'text'; icon.className = 'fas fa-eye-slash'; }
+        else { inp.type = 'password'; icon.className = 'fas fa-eye'; }
+    });
+
+    btn.addEventListener('click', async () => {
+        const input = document.getElementById('passwordFile');
+        const pwd = document.getElementById('pdfPassword').value;
+        if (!input.files.length) return;
+        if (!pwd) { showToast('Please enter a password!', 'error'); return; }
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Encrypting...';
+        try {
+            const buf = await input.files[0].arrayBuffer();
+            const doc = await PDFLib.PDFDocument.load(buf, { ignoreEncryption: true });
+            const bytes = await doc.save({
+                userPassword: pwd,
+                ownerPassword: pwd + '_owner',
+                permissions: {
+                    printing: 'lowResolution',
+                    modifying: false,
+                    copying: false,
+                    annotating: false,
+                    fillingForms: true,
+                    contentAccessibility: true,
+                    documentAssembly: false
+                },
+                encryptionKey: PDFLib.StandardEncryptionAlgorithm.AES128
+            });
+            const name = 'protected_' + input.files[0].name;
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            dlBtn.href = URL.createObjectURL(blob);
+            dlBtn.download = name;
+            dlBtn.classList.remove('d-none');
+            addRecent(name);
+            showToast('PDF password protected!');
+        } catch (err) {
+            showToast('Encryption failed: ' + err.message, 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock me-1"></i>Protect PDF';
+    });
+})();
+
+// ========== 8. PDF TO TEXT ==========
+(function() {
+    const btn = document.getElementById('wordBtn');
+    const dlBtn = document.getElementById('wordDownload');
+
+    setupDropZone('wordDrop', 'wordFile', files => {
+        showFileList('wordFileList', files);
+        btn.disabled = false;
+        dlBtn.classList.add('d-none');
+    });
+
+    btn.addEventListener('click', async () => {
+        const input = document.getElementById('wordFile');
+        if (!input.files.length) return;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Extracting...';
+        setProgress('wordProgress', 10);
+        try {
+            const ab = await input.files[0].arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: ab }).promise;
+            let text = `Text extracted from: ${input.files[0].name}\n${'='.repeat(50)}\n\n`;
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+                text += `\n--- Page ${i} ---\n`;
+                text += content.items.map(it => it.str).join(' ');
+                text += '\n';
+                setProgress('wordProgress', 10 + i / pdf.numPages * 85);
+            }
+            const blob = new Blob([text], { type: 'text/plain' });
+            const name = input.files[0].name.replace('.pdf', '') + '_text.txt';
+            dlBtn.href = URL.createObjectURL(blob);
+            dlBtn.download = name;
+            dlBtn.classList.remove('d-none');
+            setProgress('wordProgress', 100);
+            addRecent(name);
+            showToast('Text extracted successfully!');
+        } catch (err) {
+            showToast('Extraction failed: ' + err.message, 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-file-export me-1"></i>Extract Text';
+    });
+})();
+
+// ========== 9. PDF SEARCH ==========
+(function() {
+    let pdfTextByPage = [];
+    const searchQuery = document.getElementById('searchQuery');
+    const searchBtn = document.getElementById('searchBtn');
+    const results = document.getElementById('searchResults');
+    const stats = document.getElementById('searchStats');
+
+    setupDropZone('searchDrop', 'searchFile', async files => {
+        showFileList('searchFileList', files);
+        searchQuery.disabled = true;
+        searchBtn.disabled = true;
+        results.innerHTML = '<div class="search-result-item text-center"><span class="spinner-border spinner-border-sm me-2"></span>Loading PDF...</div>';
+        try {
+            const ab = await files[0].arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: ab }).promise;
+            pdfTextByPage = [];
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+                pdfTextByPage.push(content.items.map(it => it.str).join(' '));
+            }
+            results.innerHTML = '';
+            stats.textContent = `PDF loaded — ${pdfTextByPage.length} pages ready to search`;
+            stats.classList.remove('d-none');
+            searchQuery.disabled = false;
+            searchBtn.disabled = false;
+            searchQuery.focus();
+            showToast('PDF loaded — ready to search!', 'info');
+        } catch (err) {
+            results.innerHTML = '';
+            showToast('Could not load PDF for search: ' + err.message, 'error');
+        }
+    });
+
+    function doSearch() {
+        const q = searchQuery.value.trim();
+        if (!q || !pdfTextByPage.length) return;
+        const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+        let total = 0;
+        const html = [];
+        pdfTextByPage.forEach((text, idx) => {
+            const matches = [...text.matchAll(re)];
+            if (!matches.length) return;
+            total += matches.length;
+            matches.forEach(m => {
+                const start = Math.max(0, m.index - 50);
+                const end = Math.min(text.length, m.index + q.length + 50);
+                let snippet = text.slice(start, end).trim();
+                snippet = snippet.replace(re, '<mark>$&</mark>');
+                html.push(`<div class="search-result-item"><strong class="text-primary">Page ${idx + 1}</strong> — ...${snippet}...</div>`);
+            });
+        });
+        if (!html.length) {
+            results.innerHTML = '<div class="search-result-item text-muted text-center">No results found for "<strong>' + q + '</strong>"</div>';
+            stats.textContent = '0 matches found';
+        } else {
+            results.innerHTML = html.join('');
+            stats.textContent = `${total} match${total !== 1 ? 'es' : ''} found for "${q}"`;
+        }
+        stats.classList.remove('d-none');
+    }
+
+    searchBtn.addEventListener('click', doSearch);
+    searchQuery.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+})();
+
+// ========== 10. PAGE EDITOR (DELETE + REORDER) ==========
+(function() {
+    let pages = [];
+    let origBuf = null;
+    const btn = document.getElementById('pageEditBtn');
+    const dlBtn = document.getElementById('pageEditDownload');
+    const grid = document.getElementById('pagesGrid');
+    const info = document.getElementById('pageEditInfo');
+
+    setupDropZone('pageEditDrop', 'pageEditFile', async files => {
+        btn.classList.add('d-none');
+        dlBtn.classList.add('d-none');
+        grid.classList.add('d-none');
+        grid.innerHTML = '';
+        info.classList.remove('d-none');
+        info.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Loading pages...';
+        try {
+            origBuf = await files[0].arrayBuffer();
+            const doc = await PDFLib.PDFDocument.load(origBuf, { ignoreEncryption: true });
+            const total = doc.getPageCount();
+            pages = Array.from({ length: total }, (_, i) => i);
+            renderPageGrid();
+            info.textContent = `${total} pages — drag to reorder, ✕ to delete`;
+            grid.classList.remove('d-none');
+            btn.classList.remove('d-none');
+            showToast(`${total} pages loaded!`, 'info');
+        } catch (err) {
+            info.textContent = 'Failed to load PDF.';
+            showToast('Page editor error: ' + err.message, 'error');
+        }
+    });
+
+    function renderPageGrid() {
+        grid.innerHTML = '';
+        pages.forEach((origIdx, pos) => {
+            const thumb = document.createElement('div');
+            thumb.className = 'page-thumb';
+            thumb.draggable = true;
+            thumb.dataset.pos = pos;
+            thumb.innerHTML = `
+                <button class="del-page" data-pos="${pos}" title="Delete page">✕</button>
+                <i class="fas fa-file-pdf text-primary d-block mb-1" style="font-size:1.5rem"></i>
+                <div>Page ${origIdx + 1}</div>
+                <small class="text-muted">#${pos + 1}</small>
+            `;
+            thumb.querySelector('.del-page').addEventListener('click', e => {
+                e.stopPropagation();
+                const p = parseInt(e.target.dataset.pos);
+                pages.splice(p, 1);
+                if (!pages.length) { grid.classList.add('d-none'); btn.classList.add('d-none'); info.textContent = 'All pages deleted.'; return; }
+                renderPageGrid();
+                showToast(`Page deleted. ${pages.length} pages remaining.`, 'info');
+            });
+            // Drag events
+            thumb.addEventListener('dragstart', () => { thumb.classList.add('dragging'); });
+            thumb.addEventListener('dragend', () => { thumb.classList.remove('dragging'); document.querySelectorAll('.page-thumb').forEach(t => t.classList.remove('drag-over')); });
+            thumb.addEventListener('dragover', e => { e.preventDefault(); thumb.classList.add('drag-over'); });
+            thumb.addEventListener('dragleave', () => thumb.classList.remove('drag-over'));
+            thumb.addEventListener('drop', e => {
+                e.preventDefault();
+                thumb.classList.remove('drag-over');
+                const dragging = grid.querySelector('.dragging');
+                if (!dragging || dragging === thumb) return;
+                const fromPos = parseInt(dragging.dataset.pos);
+                const toPos = parseInt(thumb.dataset.pos);
+                const moved = pages.splice(fromPos, 1)[0];
+                pages.splice(toPos, 0, moved);
+                renderPageGrid();
+            });
+            grid.appendChild(thumb);
+        });
+    }
+
+    btn.addEventListener('click', async () => {
+        if (!origBuf || !pages.length) return;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+        setProgress('pageEditProgress', 10);
+        try {
+            const src = await PDFLib.PDFDocument.load(origBuf, { ignoreEncryption: true });
+            const out = await PDFLib.PDFDocument.create();
+            const copied = await out.copyPages(src, pages);
+            copied.forEach(p => out.addPage(p));
+            setProgress('pageEditProgress', 80);
+            const bytes = await out.save();
+            const name = 'reordered_' + Date.now() + '.pdf';
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            dlBtn.href = URL.createObjectURL(blob);
+            dlBtn.download = name;
+            dlBtn.classList.remove('d-none');
+            setProgress('pageEditProgress', 100);
+            addRecent(name);
+            showToast(`Saved ${pages.length}-page PDF!`);
+        } catch (err) {
+            showToast('Save failed: ' + err.message, 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save me-1"></i>Save Reordered PDF';
+    });
+})();
+
+// ========== 11. IMAGE COMPRESS ==========
+(function() {
+    let imgFile = null;
+    const btn = document.getElementById('imgCompressBtn');
+    const dlBtn = document.getElementById('imgCompressDownload');
+    const qualSlider = document.getElementById('imgQuality');
+    const qualVal = document.getElementById('qualityVal');
+    const sizeInfo = document.getElementById('imgCompressSizeInfo');
+
+    qualSlider.addEventListener('input', () => { qualVal.textContent = qualSlider.value; });
+
+    setupDropZone('imgCompressDrop', 'imgCompressFile', files => {
+        imgFile = files[0];
+        showFileList('imgCompressFileList', files);
+        btn.disabled = false;
+        dlBtn.classList.add('d-none');
+        sizeInfo.classList.add('d-none');
+    });
+
+    btn.addEventListener('click', () => {
+        if (!imgFile) return;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Compressing...';
+        const quality = parseInt(qualSlider.value) / 100;
+        const reader = new FileReader();
+        reader.onload = e => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                canvas.getContext('2d').drawImage(img, 0, 0);
+                const mime = imgFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+                canvas.toBlob(blob => {
+                    const saved = ((imgFile.size - blob.size) / imgFile.size * 100).toFixed(1);
+                    const name = 'compressed_' + imgFile.name.replace(/\.[^/.]+$/, '') + (mime === 'image/png' ? '.png' : '.jpg');
+                    dlBtn.href = URL.createObjectURL(blob);
+                    dlBtn.download = name;
+                    dlBtn.classList.remove('d-none');
+                    sizeInfo.textContent = `Before: ${formatSize(imgFile.size)} → After: ${formatSize(blob.size)} (${saved}% smaller)`;
+                    sizeInfo.classList.remove('d-none');
+                    addRecent(name);
+                    showToast(`Image compressed ${saved}% smaller!`);
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-compress-alt me-1"></i>Compress Image';
+                }, mime, quality);
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(imgFile);
+    });
+})();
+
+// ========== 12. QR CODE GENERATOR ==========
+(function() {
+    const btn = document.getElementById('qrBtn');
+    const output = document.getElementById('qrOutput');
+    const canvas = document.getElementById('qrCanvas');
+    const dlBtn = document.getElementById('qrDownload');
+    const shareBtn = document.getElementById('qrShare');
+    let qrInstance = null;
+
+    btn.addEventListener('click', () => {
+        const text = document.getElementById('qrInput').value.trim();
+        if (!text) { showToast('Please enter text or URL!', 'error'); return; }
+        const size = parseInt(document.getElementById('qrSize').value);
+        const color = document.getElementById('qrColor').value;
+
+        // Use QRCode.js on a temp div then copy to canvas
+        const tmp = document.createElement('div');
+        tmp.style.display = 'none';
+        document.body.appendChild(tmp);
+
+        if (qrInstance) { try { qrInstance.clear(); } catch(e){} }
+        qrInstance = new QRCode(tmp, {
+            text,
+            width: size,
+            height: size,
+            colorDark: color,
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        setTimeout(() => {
+            const qrImg = tmp.querySelector('img') || tmp.querySelector('canvas');
+            if (!qrImg) { document.body.removeChild(tmp); return; }
+            const src = qrImg.src || (qrImg.tagName === 'CANVAS' ? qrImg.toDataURL() : '');
+            if (!src) { document.body.removeChild(tmp); return; }
+            const image = new Image();
+            image.onload = () => {
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, size, size);
+                ctx.drawImage(image, 0, 0, size, size);
+                output.classList.remove('d-none');
+                dlBtn.href = canvas.toDataURL('image/png');
+                dlBtn.download = 'qrcode.png';
+                document.body.removeChild(tmp);
+            };
+            image.src = src;
+        }, 200);
+        showToast('QR Code generated!');
+    });
+
+    dlBtn.addEventListener('click', () => { addRecent('qrcode.png'); });
+    shareBtn.addEventListener('click', () => {
+        const dataUrl = canvas.toDataURL();
+        if (navigator.share) {
+            fetch(dataUrl).then(r => r.blob()).then(blob => {
+                const file = new File([blob], 'qrcode.png', { type: 'image/png' });
+                navigator.share({ files: [file], title: 'QR Code', text: 'Generated with PDF Tools Pro' });
+            });
+        } else {
+            navigator.clipboard.writeText(document.getElementById('qrInput').value);
+            showToast('Text copied to clipboard!', 'info');
+        }
+    });
+})();
+
+// ========== 13. AI SUMMARY ==========
+(function() {
+    const btn = document.getElementById('summaryBtn');
+    const result = document.getElementById('summaryResult');
+
+    setupDropZone('summaryDrop', 'summaryFile', files => {
+        showFileList('summaryFileList', files);
+        btn.disabled = false;
+        result.classList.add('d-none');
+    });
+
+    btn.addEventListener('click', async () => {
+        const input = document.getElementById('summaryFile');
+        if (!input.files.length) return;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Analyzing...';
+        setProgress('summaryProgress', 10);
+        try {
+            const ab = await input.files[0].arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: ab }).promise;
+            let allText = '';
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+                allText += content.items.map(it => it.str).join(' ') + ' ';
+                setProgress('summaryProgress', 10 + i / pdf.numPages * 70);
+            }
+            const words = allText.split(/\s+/).filter(Boolean);
+            const sentences = allText.split(/[.!?]+/).filter(s => s.trim().length > 20).slice(0, 5);
+            const wordFreq = {};
+            words.forEach(w => {
+                const clean = w.toLowerCase().replace(/[^a-z]/g, '');
+                if (clean.length > 4) wordFreq[clean] = (wordFreq[clean] || 0) + 1;
+            });
+            const topWords = Object.entries(wordFreq).sort((a,b) => b[1]-a[1]).slice(0, 8).map(([w]) => w);
+            result.innerHTML = `
+                <div class="fw-bold text-primary mb-2"><i class="fas fa-brain me-1"></i>AI Analysis Complete</div>
+                <div class="mb-2"><strong>📄 Pages:</strong> ${pdf.numPages} &nbsp;|&nbsp; <strong>Words:</strong> ~${words.length.toLocaleString()}</div>
+                <div class="mb-2"><strong>🔑 Key Topics:</strong> ${topWords.map(w => `<span class="badge bg-primary me-1">${w}</span>`).join('')}</div>
+                <div class="mb-2"><strong>📝 Key Sentences:</strong></div>
+                ${sentences.map(s => `<div class="search-result-item mb-1">${s.trim()}.</div>`).join('')}
+            `;
+            result.classList.remove('d-none');
+            setProgress('summaryProgress', 100);
+            showToast('Analysis complete!');
+        } catch (err) {
+            showToast('Analysis failed: ' + err.message, 'error');
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-magic me-1"></i>Generate AI Summary';
+    });
+})();
+
+// ========== RECENT FILES ==========
+document.getElementById('clearHistory').addEventListener('click', () => {
+    recentFiles = [];
+    localStorage.removeItem('pdfRecent');
+    renderRecent();
+    showToast('History cleared', 'info');
+});
+renderRecent();
+
+// ========== SERVICE WORKER (PWA) ==========
+if ('serviceWorker' in navigator) {
+    const swCode = `
+self.addEventListener('install', e => { self.skipWaiting(); });
+self.addEventListener('activate', e => clients.claim());
+self.addEventListener('fetch', e => {
+    e.respondWith(
+        caches.open('pdf-tools-v1').then(cache =>
+            cache.match(e.request).then(cached => {
+                const net = fetch(e.request).then(res => { cache.put(e.request, res.clone()); return res; }).catch(() => cached);
+                return cached || net;
+            })
+        )
+    );
+});
+`;
+    const blob = new Blob([swCode], { type: 'application/javascript' });
+    const swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl).catch(() => {});
+}
+</script>
+</body>
+</html>
